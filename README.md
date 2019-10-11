@@ -4,7 +4,7 @@ DNSCrypt-Proxy on Alpine Linux
 
 [dnscrypt-proxy](https://github.com/DNSCrypt/dnscrypt-proxy) is a flexible DNS proxy, with support for encrypted DNS protocols.
 
-**x84/x64 AMD64:**
+**x86/x64 AMD64:**
 `djaydev/dnscrypt-proxy:latest`
 
 **ARM32v7 RaspberryPi:**
