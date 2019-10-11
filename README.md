@@ -20,7 +20,7 @@ Where:
 - `DNSCRYPT_LISTEN_PORT`: Port DNSCrypt-Proxy will listen on.
 - `DNSCRYPT_SERVER_NAMES`: DNS over HTTPS servers you want to use. [public resolvers](https://download.dnscrypt.info/dnscrypt-resolvers/v2/public-resolvers.md)
 
-## eg. mount a custom configuration directory
+## Mount a custom configuration directory
 
 ```shell
     docker run -d \
