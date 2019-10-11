@@ -34,7 +34,7 @@ Where:
     --net=host \
     -e DNSCRYPT_LISTEN_PORT=53 \
     -e DNSCRYPT_SERVER_NAMES="['scaleway-fr','google','yandex','cloudflare']" \
-    -v /path/to/config:/config \
+    -v /path/to/config/dnscrypt-proxy.toml:/config/dnscrypt-proxy.toml \
     djaydev/dnscrypt-proxy
 ```
 
