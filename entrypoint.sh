@@ -17,6 +17,8 @@ then
     sed -r "s/^(# )?(server_names = ).+$/\2${DNSCRYPT_SERVER_NAMES}/" -i $CONFIG
 fi
 
+chown 1001 /config
+
 echo "dnscrypt-proxy -config $CONFIG $@"
 exec su-exec 1001 dnscrypt-proxy -config $CONFIG $@
 
