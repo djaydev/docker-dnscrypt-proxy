@@ -23,8 +23,6 @@ COPY --from=alpine /sbin/su-exec /sbin/su-exec
 COPY --from=alpine /usr/share/dnscrypt-proxy/example-dnscrypt-proxy.toml /config/dnscrypt-proxy.toml
 COPY --from=alpine /entrypoint.sh /entrypoint.sh
 
-USER 1001
-
 ENV DNSCRYPT_LISTEN_PORT=5053 \
     DNSCRYPT_SERVER_NAMES=""
 
