@@ -48,4 +48,4 @@ fi
 ensure_user dnscryptproxy $PUID $PGID
 
 echo "dnscrypt-proxy -config $CONFIG $@"
-exec su dnscryptproxy -c "dnscrypt-proxy -config $CONFIG $@""
+exec su dnscryptproxy -c "dnscrypt-proxy -config $CONFIG $@"
