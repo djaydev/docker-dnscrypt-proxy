@@ -2,8 +2,10 @@
 
 if [ ! -f /config/dnscrypt-proxy.toml ]
 then
+    chown $PUID /usr/share/dnscrypt-proxy/
     CONFIG=/usr/share/dnscrypt-proxy/example-dnscrypt-proxy.toml
 else
+    chown $PUID /config 
     CONFIG=/config/dnscrypt-proxy.toml
 fi
 
@@ -18,5 +20,4 @@ then
 fi
 
 echo "dnscrypt-proxy -config $CONFIG $@"
-exec dnscrypt-proxy -config $CONFIG $@
-
+exec su-exec $PUID dnscrypt-proxy -config $CONFIG $@
