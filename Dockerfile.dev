@@ -1,0 +1,32 @@
+FROM klutchell/dnscrypt-proxy AS dnscrypt-proxy
+FROM alpine:edge AS alpine
+
+COPY entrypoint.sh /
+
+RUN apk add --no-cache dnscrypt-proxy drill \
+	&& chmod +x /entrypoint.sh
+
+FROM scratch
+
+COPY --from=dnscrypt-proxy / /
+COPY --from=alpine /lib/libc.musl-x86_64.so.1 /lib/libc.musl-x86_64.so.1
+COPY --from=alpine /lib/ld-musl-x86_64.so.1 /lib/ld-musl-x86_64.so.1
+COPY --from=alpine /bin/busybox /bin/busybox
+COPY --from=alpine /bin/sh /bin/sh
+COPY --from=alpine /etc/logrotate.d/acpid /etc/logrotate.d/acpid
+COPY --from=alpine /etc/securetty /etc/securetty
+COPY --from=alpine /etc/network/if-up.d/dad /etc/network/if-up.d/dad
+COPY --from=alpine /etc/udhcpd.conf /etc/udhcpd.conf
+COPY --from=alpine /bin/sed /bin/sed
+COPY --from=alpine /usr/bin/drill /usr/bin/drill
+COPY --from=alpine /usr/share/dnscrypt-proxy/example-dnscrypt-proxy.toml /usr/share/dnscrypt-proxy/example-dnscrypt-proxy.toml
+
+USER 1001
+
+ENV DNSCRYPT_LISTEN_PORT=5053 \
+    DNSCRYPT_SERVER_NAMES=""
+
+HEALTHCHECK --interval=5s --timeout=3s --start-period=10s \
+	CMD drill -p $DNSCRYPT_LISTEN_PORT cloudflare.com @127.0.0.1 || exit 1
+
+ENTRYPOINT ["/entrypoint.sh"]
