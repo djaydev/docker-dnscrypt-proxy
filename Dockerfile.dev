@@ -3,7 +3,7 @@ FROM alpine:edge AS alpine
 
 COPY entrypoint.sh /
 
-RUN apk add --no-cache dnscrypt-proxy drill \
+RUN apk add --no-cache dnscrypt-proxy drill su-exec \
 	&& chmod +x /entrypoint.sh && chmod 666 /usr/share/dnscrypt-proxy/example-dnscrypt-proxy.toml
 
 FROM scratch
@@ -19,6 +19,7 @@ COPY --from=alpine /etc/network/if-up.d/dad /etc/network/if-up.d/dad
 COPY --from=alpine /etc/udhcpd.conf /etc/udhcpd.conf
 COPY --from=alpine /bin/sed /bin/sed
 COPY --from=alpine /usr/bin/drill /usr/bin/drill
+COPY --from=alpine /sbin/su-exec /sbin/su-exec
 COPY --from=alpine /usr/share/dnscrypt-proxy/example-dnscrypt-proxy.toml /config/dnscrypt-proxy.toml
 COPY --from=alpine /entrypoint.sh /entrypoint.sh
 
