@@ -37,7 +37,7 @@ fi
 
 if [ -n "${DNSCRYPT_LISTEN_PORT}" ]
 then
-    sed -r "s/^(# )?(listen_addresses = ).+$/\2['0.0.0.0:${DNSCRYPT_LISTEN_PORT}']/" -i $CONFIG
+    sed -i "s/listen_addresses = \[\'127.0.0.1:53\'\]/listen_addresses = \[\'0.0.0.0:${DNSCRYPT_LISTEN_PORT}\'\]/g" -i $CONFIG
 fi
 
 if [ -n "${DNSCRYPT_SERVER_NAMES}" ]
