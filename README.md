@@ -25,6 +25,8 @@ Where:
 
 - `DNSCRYPT_LISTEN_PORT`: Port DNSCrypt-Proxy will listen on.
 - `DNSCRYPT_SERVER_NAMES`: DNS over HTTPS servers you want to use. [public resolvers](https://download.dnscrypt.info/dnscrypt-resolvers/v2/public-resolvers.md)
+- `PUID`: ID of the user the application runs as. -OPTIONAL
+- `PGID`: ID of the group the application runs as. -OPTIONAL
 
 ## Mount a custom configuration directory
 
