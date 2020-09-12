@@ -1,4 +1,10 @@
-# dnscrypt-proxy
+# No Longer Maintained
+
+## Great Alternatives
+
+## <https://registry.hub.docker.com/r/gists/dnscrypt-proxy>
+
+## <https://registry.hub.docker.com/r/klutchell/dnscrypt-proxy>
 
 DNSCrypt-Proxy on Alpine Linux
 
